@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百度一下，你就知道</title>
+    <style>
+    .top a {
+        text-decoration:none;
+        color: black;
+        margin-right: 20px;
+    }
+    .top a:hover{
+        color:blue;
+    }
+    .top {
+        float: left;
+        margin-left: 20px;
+        margin-top: 5px;
+        font-size: 14px;
+        font-family: "微软雅黑";
+    }
+    .top2 {
+        float: right;
+        margin-right: 20px;
+        margin-top: 5px;
+        font-size: 14px;
+        font-family: "微软雅黑";
+    }
+    .top3 {
+        text-align: center;
+        background-color: rgba(0, 0, 255,0.7);
+        float: right;
+        border-radius: 5px 5px 5px 5px;
+        width: 50px;
+    }
+    .shezhi{
+        text-decoration:none;
+        color: black;
+        margin-right: 20px;
+    }
+    .top2 a:hover{
+        color:blue;
+    }
+    .white{
+        color:white;
+    }
+    button:hover{
+        background-color: rgba(0, 0, 255,1);
+    }
+    button {
+        border: none;
+    }
+    .clear{
+        clear: both;
+    }
+    .Img{
+        text-align: center;
+        margin-top: 40px;
+    }
+    img {
+        width: 300px;
+    }
+    #text {
+        text-decoration:none;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        height: 19px;
+        width: 100px;
+        color:white; 
+     }
+    .box {
+        
+        width: 350px;
+        height: 32px;
+        position: absolute;
+        border-radius: 10px 0 0 10px;
+        float: left;
+     }
+#search {
+   
+    position: absolute;
+    top: 280px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    height: 38px;
+    width: 450px;
+}
+.press {
+    
+    width: 100px;
+    height: 38px;
+    text-align: center;
+    position: relative;
+    right: 0;
+    background-color: #3385FF;
+    color: #FFFFFF;
+    float: right;
+    border-radius: 0 10px 10px 0;
+}
+#search :hover{ 
+        background-color: rgba(0, 0, 255,1);
+    }
+    #erweima {
+		width:100%;
+		float:left;
+		margin-top:19%;
+		background-color:#FFF;
+		text-align:center;
+    }
+    #erweima img{
+        width:100px;
+    }
+    .center {
+        width:100%;
+	    float:left;
+		/* margin-top:12%; */
+		background-color:#FFF;
+		text-align:center;
+    }
+    .huise {
+        color:#818fa1;
+    }
+    .down {
+        margin-top:2.5%;
+    }
+    .jianju a {
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+    .down2 {
+        margin-top: 1%;
+    }
+    </style>
+
+</head>
+<body>
+   <div class="top">
+    <a href="http://news.baidu.com/" target="_blank" >新闻</a>
+    <a href="https://www.hao123.com/" target="_blank" >hao123</a>
+    <a href="https://map.baidu.com/" target="_blank" >地图</a>
+    <a href="https://tieba.baidu.com/" target="_blank" >贴吧</a>
+    <a href="https://haokan.baidu.com/" target="_blank" >视频</a>
+    <a href=" https://image.baidu.com/" target="_blank" >图片</a>
+    <a href=" https://pan.baidu.com/" target="_blank" >网盘</a>
+    <a href="https://wenku.baidu.com/" target="_blank" >文库</a>
+    <a href="https://chat.baidu.com/" target="_blank" >AI助手</a>
+    <a href="https://www.baidu.com/more/" target="_blank" >更多</a>
+   </div>
+   <div class="top2">
+     <a href="#" class="shezhi" target="_blank">设置</a>
+     <!-- 按钮 -->
+     <a href="#" target="_blank" ><button class="top3 white">登录</button></a>
+   </div>
+   <div class="clear"></div>
+   <!-- 图片 -->
+   <div class="Img"><a href="https://top.baidu.com/board" target="_blank"><img src="PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" alt="..."></a></div>
+   <!-- <span class="search">
+    <input type="text" class="input">
+    <a href="#">百度一下</a>
+   </span> -->
+    <span id="search">
+        <form>
+            <input type="text" value="" class="box" maxlength="100">
+        </form>
+        <span class="press">
+            <a href="#" id="text">百度一下</a>
+        </span> 
+   </span>
+   
+   <span id="erweima">
+    <img src="2.png" alt="二维码">
+   </span>
+   <div class="center">下载百度APP</div>
+   <div class="center huise">有事搜一搜，没事看一看</div>
+   <span id="bottom">
+    <span class="center down jianju">
+        <a href="#" class="huise" target="_blank">把百度作为首页</a>
+        <a href="https://home.baidu.com/" class="huise" target="_blank">关于百度</a>
+        <a href="https://ir.baidu.com/" class="huise" target="_blank">About Baidu</a>
+        <a href="https://e.baidu.com/?refer=1271" class="huise" target="_blank">百度推广</a>
+    </span>
+    <span class="center down2">
+        <span class="huise">@2023_Baidu</span>
+        <a href="https://www.baidu.com/duty/" class="huise" target="_blank">使用百度前必读</a>
+        <a href="https://help.baidu.com/question?prod_id=1" class="huise" target="_blank">意见反馈</a>
+        <span class="huise"> ****证*********号</span>
+        <span class="huise">KC制作___hhhhhhhhhh号</span>
+    </span>
+
+
+
+   
+    
+</body>
+</html>
