@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>原神启动</title>
+    <style>
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        margin-right: 10px;
+      }
+      .ul {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+      .qq {
+        display: flex;
+        align-items: center;
+        vertical-align: inherit;
+        margin: 10px;
+        position: relative;
+      }
+      .context-menu {
+        display: none;
+        position: absolute;
+        background-color: white;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        list-style-type: none;
+        padding: 0;
+        z-index: 1000;
+      }
+      .context-menu li {
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+      .context-menu li:hover {
+        background-color: #f0f0f0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <div id="top">
+        <textarea
+          id="content"
+          cols="40"
+          rows="1"
+          placeholder="请输入内容"
+        ></textarea>
+      </div>
+      <ul id="ul"></ul>
+    </div>
+
+    <script>
+      let content = document.getElementById("content");
+      let ul = document.getElementById("ul");
+
+      const contextMenu = document.createElement("ul");
+      contextMenu.classList.add("context-menu");
+      document.body.appendChild(contextMenu);
+
+      const deleteMenuItem = document.createElement("li");
+      deleteMenuItem.textContent = "删除";
+      deleteMenuItem.addEventListener("click", handleDeleteClick);
+      contextMenu.appendChild(deleteMenuItem);
+
+      ul.addEventListener("contextmenu", (event) => {
+        event.preventDefault(); // 阻止默认右键菜单
+        const target = event.target.closest(".qq");
+        if (target) {
+          contextMenu.style.display = "block";
+          contextMenu.style.left = `${event.pageX}px`;
+          contextMenu.style.top = `${event.pageY}px`;
+          contextMenu.dataset.targetId = target.id;
+        }
+      });
+
+      document.addEventListener("click", () => {
+        contextMenu.style.display = "none";
+      });
+
+      function handleDeleteClick(event) {
+        const targetId = contextMenu.dataset.targetId;
+        const target = document.getElementById(targetId);
+        if (target) {
+          ul.removeChild(target);
+        }
+      }
+
+      content.onkeydown = function (sb) {
+        if (sb.code == "Enter") {
+          console.log(sb);
+          let demo = content.value.trim();
+          if (!demo) {
+            alert("输入内容为空");
+          } else {
+            let create_qq = document.createElement("li");
+            create_qq.classList.add("qq"); 
+            create_qq.id = `qq-${Date.now()}`; 
+            let img = document.createElement("img");
+            img.src = "./beng.jpg.jpg";
+            create_qq.textContent = demo;
+            create_qq.prepend(img);
+            ul.appendChild(create_qq);
+            content.value = "";
+          }
+        }
+      };
+    </script>
+  </body>
+</html>
