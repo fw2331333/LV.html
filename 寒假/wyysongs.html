@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网易云音乐播放详情页</title>
+    <style>
+        /* 基础布局 */
+        .player-detail {
+            display: flex;
+            height: 100vh;
+            background: #2a2a2a;
+            padding: 40px;
+            gap: 60px;
+        }
+
+        /* 黑胶唱片部分 */
+        .vinyl-container {
+            position: relative;
+            width: 400px;
+            margin-left: 80px;
+        }
+
+        .vinyl-disc {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #333 0%, #1a1a1a 100%);
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            animation: rotate 20s linear infinite;
+            animation-play-state: paused;
+        }
+
+        .vinyl-disc.playing {
+            animation-play-state: running;
+        }
+
+        .vinyl-cover {
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            top: 70px;
+            left: 70px;
+            background-size: cover;
+        }
+
+        .needle {
+            position: absolute;
+            width: 150px;
+            height: 200px;
+            top: -60px;
+            left: 200px;
+            transform-origin: 20px 20px;
+            transform: rotate(-30deg);
+            transition: transform 0.8s ease;
+            z-index: 2;
+        }
+
+        .needle.playing {
+            transform: rotate(0deg);
+        }
+
+        /* 歌词容器 */
+        .lyrics-container {
+            flex: 1;
+            padding: 40px;
+            color: #fff;
+            overflow-y: auto;
+        }
+
+        .lyric-line {
+            font-size: 18px;
+            line-height: 2.5;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .lyric-line.active {
+            font-size: 24px;
+            opacity: 1;
+            color: #ec4141;
+            transform: scale(1.1);
+        }
+
+        /* 底部控制栏 */
+        .detail-controls {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #363636;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        /* 动画定义 */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="player-detail">
+        <!-- 黑胶唱片部分 -->
+        <div class="vinyl-container">
+            <img src="needle.png" class="needle" id="needle">
+            <div class="vinyl-disc" id="vinylDisc">
+                <img id="detailCover" class="vinyl-cover" src="https://placehold.co/260">
+            </div>
+        </div>
+
+        <!-- 歌词部分 -->
+        <div class="lyrics-container" id="lyricsBox">
+            <div class="lyric-line">歌词加载中...</div>
+        </div>
+
+        <!-- 底部控制栏 -->
+        <div class="detail-controls">
+            <!-- 复用主播放器的控制按钮 -->
+            <div class="controls">
+                <button id="detailPrevBtn">&#x23EE;</button>
+                <button id="detailPlayBtn">&#x23F5;</button>
+                <button id="detailNextBtn">&#x23ED;</button>
+            </div>
+            <input type="range" id="detailProgress" class="progress-bar">
+            <div class="volume-control">
+                <button id="detailMuteBtn">&#x1F508;</button>
+                <input type="range" id="detailVolume" class="volume-bar">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 黑胶唱片动画控制
+        const vinylDisc = document.getElementById('vinylDisc');
+        const needle = document.getElementById('needle');
+        const audio = new Audio();
+
+        // 歌词数据示例
+        const lyrics = [
+            { time: 0, text: "从前从前有个人爱你很久" },
+            { time: 5, text: "但偏偏风渐渐把距离吹得好远" },
+            { time: 10, text: "好不容易又能再多爱一天" },
+            { time: 15, text: "但故事的最后你好像还是说了拜拜" }
+        ];
+
+        // 歌词高亮更新
+        function updateLyrics() {
+            const currentTime = audio.currentTime;
+            const lines = document.querySelectorAll('.lyric-line');
+            
+            lyrics.forEach((line, index) => {
+                if(currentTime >= line.time && 
+                  (!lyrics[index+1] || currentTime < lyrics[index+1].time)) {
+                    lines[index].classList.add('active');
+                } else {
+                    lines[index].classList.remove('active');
+                }
+            });
+        }
+
+        // 初始化歌词
+        function initLyrics() {
+            const container = document.getElementById('lyricsBox');
+            container.innerHTML = lyrics.map(line => 
+                `<div class="lyric-line">${line.text}</div>`
+            ).join('');
+        }
+
+        // 播放控制
+        document.getElementById('detailPlayBtn').addEventListener('click', () => {
+            if(audio.paused) {
+                audio.play();
+                vinylDisc.classList.add('playing');
+                needle.classList.add('playing');
+            } else {
+                audio.pause();
+                vinylDisc.classList.remove('playing');
+                needle.classList.remove('playing');
+            }
+        });
+
+        // 进度更新
+        audio.addEventListener('timeupdate', () => {
+            updateLyrics();
+            document.getElementById('detailProgress').value = 
+                (audio.currentTime / audio.duration) * 100;
+        });
+
+        // 初始化
+        window.onload = () => {
+            initLyrics();
+            audio.src = 'song.mp3'; // 替换为实际音频地址
+        }
+    </script>
+</body>
+</html>
