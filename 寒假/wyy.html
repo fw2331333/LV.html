@@ -15,31 +15,31 @@
         网易云音乐
       </div>
       <ul class="menu">
-        <li class="active" data-route="recommend">
-          <div class="menu-item">
+        <li class="active">
+          <div class="menu-item" id="cc">
             <i class="icon discover"></i>
-            <a href="wyy.html"><span>推荐</span></a>
+            <span>推荐</span>
           </div>
         </li>
-        <li data-route="featured">
-          <div class="menu-item">
+        <li>
+          <div class="menu-item" id="selective1">
             <i class="icon jingxuan"></i>
-            <span><a href="wyy.html">精选</a></span>
+            <span>精选</span>
           </div>
         </li>
-        <li data-route="blog">
+        <li>
           <div class="menu-item">
             <i class="icon boke"></i>
-            <span><a href="wyy.html">播客</a></span>
+            <span>播客</span>
           </div>
         </li>
-        <li data-route="explore">
+        <li>
           <div class="menu-item">
             <i class="icon manyou"></i>
             <span>漫游</span>
           </div>
         </li>
-        <li data-route="dynamic">
+        <li>
           <div class="menu-item">
             <i class="icon dongtai"></i>
             <span>动态</span>
@@ -47,19 +47,19 @@
         </li>
         <!-- 分割线 -->
         <li class="divider"></li>
-        <li data-route="favorite">
-          <div class="menu-item">
+        <li>
+          <div class="menu-item" id="fff">
             <i class="icon music"></i>
             <span>我喜欢的音乐</span>
           </div>
         </li>
-        <li data-route="recent">
+        <li>
           <div class="menu-item">
             <i class="icon zuijinbofang"></i>
             <span>最近播放</span>
           </div>
         </li>
-        <li data-route="my-blog">
+        <li>
           <div class="menu-item">
             <i class="icon wodeboke"></i>
             <span>我的博客</span>
@@ -68,13 +68,19 @@
       </ul>
     </aside>
 
-    <!-- 内容区域 -->
+<!-- 内容区域 -->
 <div class="content-area" id="content-area">
   <div class="carousel-container" id="carousel-container"></div>
     <!-- 推荐歌单 -->
     <div class="box-container" id="box-container"></div>
 </div>
-  
+
+<!-- 精选 -->
+<div id="selective" class="selective">
+  <div class="logo">歌单广场</div>
+  <div class="head2"></div>
+  <div class="box-container" id="featured-container"></div>
+</div>
 
   <!-- 顶部导航栏 -->
   <div class="head1">
@@ -88,12 +94,41 @@
     </div>
   </div>
 
-  <!-- 播放器 -->
-  <div class="player">
+<!-- 播放界面 -->
+<div id="player-detail" class="player-detail">
+  <div class="detail-header">
+    <div class="close-btn">↓</div>
+  </div>
+  <div class="detail1-content">
+    <!-- 左侧唱片部分 -->
+    <div class="vinyl-container">
+      <img src="唱针-1.png" class="needle" id="needle">
+      <div class="vinyl-disc">
+        <img id="vinyl-cover" class="vinyl-cover" src="">
+      </div>
+    </div>
+
+    <!-- 右侧信息部分 -->
+    <div class="info-container">
+      <div class="song1">
+        <h2 id="detail-song-name">歌曲名称</h2>
+        <p id="detail-artist-name">歌手</p>
+        <p id="detail-album-name">专辑名称</p>
+      </div>
+      <div class="lyrics-container" id="lyricsBox"></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- 播放器 -->
+<div class="player">
   <div class="player-info">
-    <a href="http://www.123" target="_blank">
       <img id="cover" src="https://placehold.co/50" alt="封面">
-    </a>
     <div class="song-info">
       <p id="song-name">歌曲名称</p>
       <p id="artist-name">歌手</p>
@@ -105,7 +140,7 @@
       <button id="play-btn"><i class="icon play">&#x23F5;</i></button>
       <button id="next-btn"><i class="icon next">&#x23ED;</i></button>
     </div>
-    <div class="progress">
+    <div class="progress1">
       <span id="current-time">00:00</span>
       <input type="range" id="progress-bar" min="0" max="100" value="0">
       <span id="duration">00:00</span>
@@ -117,8 +152,22 @@
   </div>
   <audio id="audio"></audio>
 </div>
+
+
+<!-- 歌单详情 -->
+<div id="selective2" class="selective2">
+  <div class="logo">歌单详情</div>
 </div>
 
+<!-- 歌曲列表 -->
+<!-- <div id="selective3" class="selective3">
+  <div class="logo">歌曲列表</div>
+</div> -->
+
+<!-- 我喜欢的音乐 -->
+<div id="selective4" class="selective4">
+  <div class="logo">我喜欢的音乐</div>
+</div>
   <script src="wyy.js"></script>
 </body>
 </html>
